@@ -7,16 +7,22 @@ import cus_main from '@/components/customer/cus_main'
 Vue.use(Router)
 
 export default new Router({
+  mode:"history",
   routes: [
     {
-      path: '/',
+      path:"/",
+      redirect:"/login"
+    },
+    {
+      path: '/home',
       name: 'home',
       component: home
     },
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: login,
+
     },
     {
       path: '/cus_main',

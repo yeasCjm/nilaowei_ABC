@@ -1,0 +1,5 @@
+[问题:在用npm下载的时候，出现了这个问题，npm加载一直不成功；]
+	Downloading https://chromedriver.storage.googleapis.com/2.43/chromedriver_win32.zip
+Saving to C:\Users\Administrator\AppData\Local\Temp\chromedriver\chromedriver_win32.zip
+Received 781K...
+[解决: npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver]
