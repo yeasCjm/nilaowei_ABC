@@ -1,49 +1,52 @@
 
 
 <template>
-  <div id="contain">
-    <header>
-      <div >
-        
-      </div>
-    </header>
-    <section>
-     <div id="aside_nav">
-       {{msg}}
-     </div>
-     <div id="section">
-       <router-view/>
-     </div>
-    </section>
-   
-    
+ <div class="layout" style="height: 100%">
+  <div style="overflow-y:auto; height: calc(100% - 60px);">
+    <v-content></v-content>
   </div>
+      
+      <v-footer class='footer'></v-footer>
+    </div>
+  
 </template>
 
 <script>
-import menu from '../public/menu.js' //注意路径
-
+import foot from './common/footer/footer.vue' ;
+import homeContent from './homeContent.vue' ;
 export default {
   name: 'home',
+  computed: {
+     
+  },
   data () {
     return {
-      msg:menu
+      msg:"",
+
     }
+  },
+  components: {
+      'v-footer': foot,
+      'v-content':homeContent,
+      
   },
   methods:{
     show_btn : function(){
-        
-        console.log(menu.SystemMenu)
+      console.log('mounted')
     },
-
+   
   },
   mounted : function(){
-    this.show_btn()
-  }
+   
+  },
+
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.footer{
+  position:fixed;
+  bottom:0;
+}
 </style>
