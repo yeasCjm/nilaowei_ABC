@@ -5,7 +5,6 @@
   <div style="overflow-y:auto; height: calc(100% - 60px);">
     <v-content></v-content>
   </div>
-      
       <v-footer class='footer'></v-footer>
     </div>
   
