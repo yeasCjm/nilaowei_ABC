@@ -1,10 +1,9 @@
 <template>
     <div class="head_bar">
-        
-        <Button type="primary">
-            <Icon type="ios-arrow-back"></Icon>
-        </Button>
-        <span>{{header_title}}</span>
+        <el-button type="primary" icon="el-icon-arrow-left" @click="goback()">
+        </el-button>
+       
+        <span class="head_bar_tit">{{header_title}}</span>
          
     </div>
 </template>
@@ -19,17 +18,31 @@ export default {
         }
     },
     mounted(){
-        
+         console.log(this.$router.params)
+        this.header_title = this.$route.params.tit
     },
     methods:{
-      
+      goback(){
+
+        this.$router.go(-1)
+      }
     },
 }
 </script>
 
 <style  lang="less">
 
-.head_bar{
-    text-align:left
-}
+    .head_bar{
+        text-align:left;
+        background:#2d8cf0;
+    }
+    .head_bar_tit{
+        display:inline-block;
+        width:calc(100% - 93px);
+        text-align: center;
+        font-size: 17px;
+        font-weight: 600;
+        line-height:2.5;
+        color:#fff;
+    }
 </style>

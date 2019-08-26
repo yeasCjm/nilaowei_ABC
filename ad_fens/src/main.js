@@ -5,12 +5,9 @@ import App from './App';
 import router from './router';
 
 Vue.config.productionTip = false
-import iView from 'iview';
-import locale from 'iview/dist/locale/en-US';
-import 'iview/dist/styles/iview.css';
-Vue.use(iView, { 
-  locale ,
-});
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 import axios from 'axios';
 Vue.prototype.$http = axios;
 /* eslint-disable no-new */

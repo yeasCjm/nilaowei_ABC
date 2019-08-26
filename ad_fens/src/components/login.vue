@@ -5,20 +5,23 @@
             <h1>用户登录</h1>
             <p></p>
             <p>
-                <Input v-model="user_name" placeholder="用户名" clearable style="width: 250px"  />
+                <el-input  v-model="user_name" placeholder="用户名"    style="width: 250px"  clearable></el-input>
+               
             </p> 
              <p>
-                <Input v-model="pwd" type="password" placeholder="密码" clearable style="width: 250px"  />
+                  <el-input  v-model="pwd" placeholder="密码"    style="width: 250px"  clearable></el-input>
+               
             </p> 
             <p>
-                <Input v-model="veri" placeholder="验证码" clearable style="width: 120px;"  />
+                
+                 <el-input  v-model="veri" placeholder="验证码"    style="width: 120px"  clearable></el-input>
                 <img :src="veriUrl" alt="点击生成二维码" @click="changeVeri()" style="width:120px;display: inline-block;">
             </p>
             <p>
 
             </p>
             <p>
-                <Button @click="login()" type="success" long style="width:250px">登&nbsp;&nbsp;录</Button>
+                <el-button type="success"  @click="login()"  style="width:250px"  round>登&nbsp;&nbsp;录</el-button>
             </p>  
       </div>
   </div>
@@ -54,17 +57,19 @@ export default {
     .login_bg{  
         height:100%;
         background:url('/static/img/bg.jpg') center center repeat ;
+        display: flex;
+        align-items: center; /*定义body的元素垂直居中*/
+        justify-content: center;
+
     }
     .login_from{
         height: 450px;
         background: #fff;
-        width: 300px;
-        position: absolute;
-        top: 62px;
-        right: 46px;
+        padding: 0 34px;
         border-radius: 10px;
-        border:1px solid #fff;
-        box-shadow: 5px 4px 10px #1E1E21;
+        border: 1px solid #fff;
+        box-shadow: 5px 4px 10px #1e1e21;
+
     }
     .login_from p{
         height:50px

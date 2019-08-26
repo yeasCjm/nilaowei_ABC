@@ -1,30 +1,22 @@
 
-<template lang="html">
-        <Menu mode="horizontal" :theme="theme1" active-name="1">
-            <Submenu name="1">
-                <template slot="title">
-                    <Icon type="ios-barcode" />
-                    基本功能
-                </template>
-                <MenuGroup title="使用">
-                    <MenuItem name="1-1" @click.native='loadLocal("/taskList")' >任务列表</MenuItem>
-                    <MenuItem name="1-2" @click.native='loadLocal("/phone")'>手机管理</MenuItem>
-                    <MenuItem name="1-3" @click.native='loadLocal("/account")'>账号管理</MenuItem>
-                </MenuGroup>
-            </Submenu>
-            <Submenu name="2">
-                <template slot="title">
-                    <Icon type="ios-apps" />
-                    app软件
-                </template>
-                <MenuGroup title="使用">
-                    <MenuItem name="2-1" @click.native='loadLocal("/taskList")'>抖音</MenuItem>
-                    <MenuItem name="2-2" @click.native='loadLocal("/taskList")'>快手</MenuItem>
-                    <MenuItem name="2-3" @click.native='loadLocal("/taskList")'>腾讯新闻</MenuItem>
-                    <MenuItem name="2-4" @click.native='loadLocal("/taskList")'>头条新闻</MenuItem>
-                </MenuGroup>
-            </Submenu>
-        </Menu>
+<template >  
+  
+        <el-menu ref="footNav" unique-opened="true" :default-active="active" menu-trigger="click" class="el-menu-demo" mode="horizontal" style="width:100%">
+            <el-submenu index="1">
+                <template slot="title">基本功能</template>
+                <el-menu-item index="1-1" @click.native='loadLocal("taskList","任务列表")' >任务列表</el-menu-item>
+                <el-menu-item index="1-2" @click.native='loadLocal("phone","手机管理")'>手机管理</el-menu-item>
+                <el-menu-item index="1-3" @click.native='loadLocal("account","账号管理")'>账号管理</el-menu-item>
+            </el-submenu>
+             <el-submenu index="2">
+                <template slot="title">app软件</template>
+                <el-menu-item index="2-1" @click.native='loadApp("抖音",1)'>抖音</el-menu-item>
+                <el-menu-item index="2-2" @click.native='loadApp("快手",2)'>快手</el-menu-item>
+                <el-menu-item index="2-3" @click.native='loadApp("腾讯新闻",3)'>腾讯新闻</el-menu-item>
+                <el-menu-item index="2-4" @click.native='loadApp("头条",4)'>头条新闻</el-menu-item>
+            </el-submenu>
+        </el-menu>
+
 </template>
 
 <script>
@@ -32,20 +24,42 @@
     export default{
         data () {
             return {
-                theme1: 'light'
+              active:""
             }
         },
         methods:{
-            loadLocal(url,data){
-                console.log(url)
-                window.location.href = url  ;
-            }
+            loadLocal(url,tit){
+                var data = {
+                    name:url,
+                    params:{
+                        tit:tit
+                    }
+                }
+                this.$router.push(data)
+            },
+            loadApp(tit,id){
+                this.$router.push({
+                    name:"basicApp",
+                    params:{
+                        tit:tit,
+                        showId:id
+                    }
+                })
+            },
+          
+        },
+        mounted(){
+
+        },
+        watch:{
+           
         }
     }
 
 </script>
 
 <style>
-    .ivu-menu-submenu{width:50%;}
+    .el-submenu{width:50%;}
     .ivu-menu-horizontal{width:100%;}
+    .el-menu-item {text-align:center}
 </style>

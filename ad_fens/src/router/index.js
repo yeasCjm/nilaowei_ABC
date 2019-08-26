@@ -5,6 +5,7 @@ import login from '@/components/login'
 import taskList from '@/components/task/basicTask/taskList'
 import phone from '@/components/task/basicTask/phone'
 import account from '@/components/task/basicTask/account'
+import basicApp from '@/components/task/basicTask/account'
 
 Vue.use(Router)
 
@@ -41,6 +42,12 @@ export default new Router({
       path: '/account',
       name: 'account',
       component: account,
+
+    },
+    {
+      path: '/basicApp',
+      name: 'basicApp',
+      component: basicApp,
 
     },
    
