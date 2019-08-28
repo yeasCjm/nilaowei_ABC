@@ -16,6 +16,7 @@
             'v-head' : hea ,
         },
         mounted(){
+           
             console.log(this.$router.params)
         }
     }
