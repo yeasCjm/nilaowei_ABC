@@ -3,6 +3,8 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import store from './public/vuex/stroe'
+
 
 Vue.config.productionTip = false
 import ElementUI from 'element-ui';
@@ -10,13 +12,13 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
 import axios from './public/config/axios.js';
-axios.defaults.withCredentials = true;
 Vue.prototype.$http = axios
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

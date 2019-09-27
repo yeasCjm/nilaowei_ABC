@@ -52,4 +52,7 @@ axios.interceptors.response.use(
     error => {
         return Promise.reject(error.response)   // 返回接口返回的错误信息
     });
+
+//请求带上cookie
+axios.defaults.withCredentials = true;
 export default axios;

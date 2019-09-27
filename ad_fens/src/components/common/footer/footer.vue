@@ -1,7 +1,7 @@
 
 <template >  
   
-        <el-menu ref="footNav" unique-opened="true" :default-active="active" menu-trigger="click" class="el-menu-demo" mode="horizontal" style="width:100%">
+        <el-menu ref="footNav"  :default-active="active" menu-trigger="click" class="el-menu-demo" mode="horizontal" style="width:100%">
             <el-submenu index="1">
                 <template slot="title">基本功能</template>
                 <el-menu-item index="1-1" @click.native='loadLocal("taskList","任务列表")' >任务列表</el-menu-item>
@@ -62,4 +62,6 @@
     .el-submenu{width:50%;}
     .ivu-menu-horizontal{width:100%;}
     .el-menu-item {text-align:center}
+    .el-menu--horizontal>.el-submenu.is-active .el-submenu__title{border-bottom: 0}
+    .el-menu--horizontal{width:50%}
 </style>

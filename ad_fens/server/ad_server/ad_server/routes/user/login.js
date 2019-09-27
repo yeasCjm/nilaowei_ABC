@@ -9,7 +9,7 @@ async function to_login(req,res){
     let login_name = req.body.login_name;
     let veri = req.body.veri ;
     if(login_name == ''){
-        return_data['code'] = '1001';
+        return_data['code'] = 1001;
         return_data['msg'] = '请输入登录名';
         res.send(JSON.stringify(return_data));
         return ;
@@ -17,7 +17,7 @@ async function to_login(req,res){
   
     let verify = req.cookies.captcha;
     if (verify != veri) {
-        return_data['code'] = '1002';
+        return_data['code'] = 1002;
         return_data['msg'] = '验证码输入错误';
         res.send(JSON.stringify(return_data));
         return;
@@ -32,10 +32,10 @@ async function to_login(req,res){
     });
    
     if(str.length == 0){
-        return_data['code'] = '1000';
+        return_data['code'] = 1000;
         return_data['msg'] = '用户不存在' ;
     }else{
-        return_data['code'] = '0';
+        return_data['code'] = 0;
         return_data['msg'] = '登录成功';
         return_data['info'] = str[0];
     }
