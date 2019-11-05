@@ -1,6 +1,6 @@
 <template>
     <div class="head_bar">
-        <el-button type="primary" icon="el-icon-arrow-left" @click="goback()">
+        <el-button type="primary" class="type-btn-primary" icon="el-icon-arrow-left" @click="goback()">
         </el-button>
        
         <span class="head_bar_tit">{{header_title}}</span>
@@ -18,12 +18,13 @@ export default {
         }
     },
     mounted(){
-         console.log(this.$router.params)
-        this.header_title = this.$route.params.tit
+
+        this.header_title = this.$route.meta.titname ; 
+        
+       
     },
     methods:{
       goback(){
-
         this.$router.go(-1)
       }
     },
@@ -34,7 +35,9 @@ export default {
 
     .head_bar{
         text-align:left;
-        background:#2d8cf0;
+        background:rgba(23, 23, 59, 1);
+        height: 58px;
+        line-height: 58px;
     }
     .head_bar_tit{
         display:inline-block;
@@ -44,5 +47,9 @@ export default {
         font-weight: 600;
         line-height:2.5;
         color:#fff;
+    }
+    .type-btn-primary{
+        background-color : rgba(23, 23, 59, 1);
+        border :1px solid  rgba(23, 23, 59, 1);
     }
 </style>

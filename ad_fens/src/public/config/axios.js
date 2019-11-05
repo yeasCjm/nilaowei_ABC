@@ -1,25 +1,24 @@
 /**
  * ajax请求配置
  */
-import axios from 'axios'
-
+import axios from 'axios' ;
+import qs from 'qs' ;
 // axios默认配置
 axios.defaults.timeout = 10000;   // 超时时间
-axios.defaults.baseURL = 'http://127.0.0.1:22110';  // 默认地址
+axios.defaults.baseURL = 'https://dy.gzdameng.com/api/public/?s=';  // 默认地址
 
 //整理数据
-axios.defaults.transformRequest = function (data) {
+/* axios.defaults.transformRequest = function (data) {
     //data = Qs.stringify(data);
-    data = JSON.stringify(data);
+   // data = JSON.stringify(data);
     return data;
-};
+}; */
 
 // 路由请求拦截
 // http request 拦截器
 axios.interceptors.request.use(
     config => {
-        //config.data = JSON.stringify(config.data);  
-        config.headers['Content-Type'] = 'application/json;charset=UTF-8';
+        config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
         //判断是否存在ticket，如果存在的话，则每个http header都加上ticket
         /*if (cookie.get("token")) {
             //用户每次操作，都将cookie设置成2小时
@@ -28,7 +27,14 @@ axios.interceptors.request.use(
             config.headers.token = cookie.get("token");
             config.headers.name = cookie.get("name"); 
         }*/
+    
+        config.url = config.baseURL + config.url.split('=')[0] ;
 
+        if (config.method === "post") {
+  
+            config.data = qs.stringify(config.data);
+        } 
+       
         return config;
     },
     error => {
@@ -54,5 +60,5 @@ axios.interceptors.response.use(
     });
 
 //请求带上cookie
-axios.defaults.withCredentials = true;
+/* axios.defaults.withCredentials = true; */
 export default axios;

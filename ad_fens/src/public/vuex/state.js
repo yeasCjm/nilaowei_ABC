@@ -1,7 +1,8 @@
 
 
 const state = {
-    news: {}
+
+    ueserInfo : window.sessionStorage.getItem('userInfo') ||"" ,
 }
 
 export default state

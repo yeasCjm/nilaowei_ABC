@@ -1,9 +1,12 @@
 
 
 const mutations = {
-    SET_NEWS(state, val) {
-        state.news = val
-    }
+    getUserInfo(state){
+        state.userInfo = window.sessionStorage.getItem('userInfo')
+    },
+    SET_USERINFO(state,v){
+        state.userInfo = v;
+    },
 }
 
 
