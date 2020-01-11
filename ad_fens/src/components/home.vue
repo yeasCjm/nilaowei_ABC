@@ -2,22 +2,28 @@
 
 <template>
  <div class="layout" style="height: 100%">
-  <div style=" height: calc(100% - 60px);">
-    <v-content></v-content>
-  </div>
-      <v-footer class='footer'></v-footer>
+    <div class="headTop" >
+
     </div>
+    <div style="display:flex;width:100%;height:calc(100% - 50px)">
+      <v-nav></v-nav>
+      <div style="margin:20px 15px;background:#fff;box-shadow:0 0 10px #e1e1e1;height:100%;width:calc(100% - 230px)">
+        <keep-alive>
+				    <router-view></router-view>
+			  </keep-alive>
+      </div>
+      
+    </div>   
+  </div>
   
 </template>
 
 <script>
-import foot from './common/footer/footer.vue' ;
-import homeContent from './homeContent.vue' ;
+
+import nav from './common/nav/navList.vue' ;
 export default {
   name: 'home',
-  computed: {
-     
-  },
+  
   data () {
     return {
       msg:"",
@@ -25,27 +31,24 @@ export default {
     }
   },
   components: {
-      'v-footer': foot,
-      'v-content':homeContent,
+     
+      'v-nav':nav,
       
   },
   methods:{
-    show_btn : function(){
-      console.log('mounted')
-    },
+   
    
   },
-  mounted : function(){
-   
+  created : function(){
+    this.$router.push('staticTotal')
   },
 
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.footer{
-  position:fixed;
-  bottom:0px;
+<style >
+.headTop{
+  width:100%;height:50px;background:#236ECA
 }
 </style>

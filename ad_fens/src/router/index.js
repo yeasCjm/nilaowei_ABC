@@ -2,18 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/components/home'
 import login from '@/components/login'
-import taskList from '@/components/task/basicTask/taskList'
-import phone from '@/components/task/basicTask/phone'
-import account from '@/components/task/basicTask/account'
-import dispatchTask from '@/components/task/dispatchTask/dispatchTask'
-import Maintenance from '@/components/task/dispatchTask/Maintenance'
-import douyinApp from '@/components/task/douyin/douyinApp'
-import douyin from '@/components/task/douyin/douyin'
-import douyinGetmsg from '@/components/task/douyin/douyinGetmsg'
-
+import staticTotal from '@/components/views/static/staticTotal'
+import staticDetail from '@/components/views/static/staticDetail'
+import phoneTotal from '@/components/views/phone/phoneTotal'
 
 Vue.use(Router);
-
 
 export default new Router({
   mode:"history",
@@ -25,8 +18,25 @@ export default new Router({
     {
       path: '/home',
       name: 'home',
-      meta: { 'titname': "首页",requireAuth:true },
-      component: home
+      meta: { requireAuth:true },
+      component: home,
+      children:[
+        {
+          path: '/staticTotal',
+          component: staticTotal,
+          meta: { requireAuth: true },
+        },
+        {
+          path: '/staticDetail',
+          component: staticDetail,
+          meta: { requireAuth: true },
+        },
+        {
+          path: '/phoneTotal',
+          component: phoneTotal,
+          meta: { requireAuth: true, headName: "手机列表", headExplain:"（请务必为每台手机设置唯一的标签，最好是将标签贴在手机前端）" },
+        },
+      ]
     },
     {
       path: '/login',
@@ -34,42 +44,8 @@ export default new Router({
       meta: { 'titname': "登录" },
       component: login,
 
-    }, {
-      path: '/taskList',
-      name: 'taskList',
-      meta: { 'titname': "任务列表" },
-      component: taskList,
-
-    },
-     {
-      path: '/phone',
-      name: 'phone',
-      meta: { 'titname': "电话" },
-      component: phone,
-
-    },
-     {
-      path: '/account',
-      name: 'account',
-      meta: { 'titname': "账号" },
-      component: account,
-
-    },
-    {
-      path: '/disPatch',
-      name: 'disPatch',
-      meta: { 'titname': "选择任务" },
-      component: dispatchTask,
-
-    },
-    {
-      path: '/Maintenance',
-      name: 'Maintenance',
-      meta: { 'titname': "Maintenance" },
-      component: Maintenance,
-
-    },
-    {
+    }, 
+  /*   {
       path :'/douyinApp',
       redirect:"/douyinApp/douyinModule",
       name:"douyinApp" ,
@@ -81,14 +57,8 @@ export default new Router({
           component: douyinApp,
           meta: { 'titname': "抖音模块", },
         },
-        {
-          path: 'douyinGetmsg',
-          name: 'douyinGetmsg',
-          meta: { 'titname': "抖音模块-采集任务", },
-          component: douyinGetmsg
-        },
       ]
-    }, 
+    },  */
    
    
   ]

@@ -9,7 +9,11 @@
             <el-input  v-model="veri" placeholder="验证码"   style="margin:10px 0;display:none"   clearable> 
                     <template slot="append"> <img :src="veriUrl" alt="点击生成二维码" @click="changeVeri()" style="width:100px;height:35px"> </template>
             </el-input>
-            <el-button type="success"  @click="login()"  style="width:250px;margin-top:10px"  round>登&nbsp;&nbsp;录</el-button>
+            <el-checkbox v-model="checked">是否记住用户名</el-checkbox>
+            <div>
+                 <el-button type="primary"  @click="login()"  style="width:250px;margin-top:10px"  round>登&nbsp;&nbsp;录</el-button>
+            </div>
+           
                 
         </div>
   </div>
@@ -25,7 +29,8 @@ export default {
                 pwd :"",
                 mid:window.localStorage.getItem('mid') ? window.localStorage.getItem('mid') :"",
                 veri:"",
-                veriUrl:"http://192.168.2.59:22110/users/veri",
+                veriUrl:"http://192.168.2.159:22110/users/veri",
+                "checked" :true,
             }
         },
     methods:{
@@ -35,15 +40,17 @@ export default {
         },
         login(){
             let $this = this ;
-            console.log(this)
+          
             this.$http.post('App.Account.Login',{uid:this.user_name,pwd:this.pwd,m_id:this.mid}).then((res)=>{
                
                     let r = $this.$func.checkCode(res) ;
                     if(r.status || r.status == undefined){
                         this.$message.error(r.msg ? r.msg : '未知错误，联系管理员');
                     }else{
-                        window.localStorage.setItem('user_name',this.user_name);
-                        window.localStorage.setItem('mid',this.mid)
+                        if(this.checked){
+                            window.localStorage.setItem('user_name',this.user_name);
+                            window.localStorage.setItem('mid',this.mid)
+                        }
                         this.userinfo = r.data ;
                         window.sessionStorage.setItem('userInfo',JSON.stringify(r.data))
                         $this.$store.commit('SET_USERINFO', r.data ) ;
@@ -60,7 +67,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style  lang="less">
+<style scoped  lang="less">
     .login_bg{  
         height:100%;
        /*  background-image: linear-gradient(to top , #7AFFAF,#7A88FF); */
@@ -72,8 +79,11 @@ export default {
         background:url('../assets/login/bg.jpg') no-repeat ;
         background-size: cover ;
     }
+    .el-input{margin:15px 0 ;}
+    .el-checkbox{display: flex;margin:15px 0 ;}
     .login_from{
-        width:auto;
+        width:300px;
+        height:400px;
         background: #fff;
         padding: 12px 34px 50px 34px;
         margin: 12px 34px 50px 34px;
